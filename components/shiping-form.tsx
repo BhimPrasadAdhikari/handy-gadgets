@@ -25,12 +25,13 @@ import { Heading } from '@/components/ui/heading';
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
-import { TrashIcon } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import * as z from 'zod'
+
+import useCart from '@/hooks/use-cart';
 const formSchema = z.object({
   firstName: z.string().min(1),
   lastName: z.string().min(1),
@@ -41,8 +42,7 @@ type ShipingFormValues = z.infer<typeof formSchema>;
 export const ShipingForm: React.FC = () => {
   const params = useParams();
   const router = useRouter();
-
-
+  const items = useCart((state) => state.items);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const form = useForm<ShipingFormValues>({
@@ -57,9 +57,15 @@ export const ShipingForm: React.FC = () => {
   const onSubmit = async ({phone,address}: ShipingFormValues) => {
     try {
       setLoading(true);
-        await axios.post(`/api/${params.storeId}/orders`, {phone,address});
-      router.refresh();
-      window.location.assign(`/${params.storeId}/products`);
+        const response= await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout`,{
+      productIds: items.map((item)=>item.id),
+      details:{phone, address}
+    },{
+      headers:{
+        "Content-Type":"application/json"
+      }
+    })
+    window.location = response?.data.url;
       toast.success("success");
     } catch (error) {
       toast.error('something went wrong');

@@ -38,10 +38,6 @@ const Summary = () => {
     return total + Number(item.price)
   }, 0);
   const onCheckout =() => {
-    // const response= await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout`,{
-    //   productIds: items.map((item)=>item.id)
-    // })
-    // window.location = response.data.url;
     shipingModel.onOpen()
   }
 
