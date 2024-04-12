@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 
 import PreviewModal from "@/components/preview-modal";
-
+import ShippingModal from "@/components/customer-modal";
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
 
@@ -20,6 +20,7 @@ const ModalProvider = () => {
   return ( 
     <>
       <PreviewModal />
+      <ShippingModal/>
     </>
    );
 }
