@@ -1,6 +1,6 @@
 'use client';
 // import { AlertModel } from '@/components/models/alert-model';
-import {Button} from '@/components/ui/button';
+import Button from '@/components/Button';
 import {
   Form,
   FormControl,
