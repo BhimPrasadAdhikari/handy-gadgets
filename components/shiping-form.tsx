@@ -147,7 +147,7 @@ export const ShipingForm: React.FC = () => {
             name="lastName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Last Name </FormLabel>
+                <FormLabel>Address </FormLabel>
                 <FormControl>
                   <Input
                     disabled={loading}
