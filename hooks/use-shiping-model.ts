@@ -6,7 +6,7 @@ interface ShipingModelStore{
      onClose:()=>void;
 }
 const useShipingModel=create<ShipingModelStore>((set)=>({
-    isOpen:false,
+    isOpen:true,
     onOpen:()=>set({isOpen:true}),
     onClose:()=>set({isOpen:false})
 }));

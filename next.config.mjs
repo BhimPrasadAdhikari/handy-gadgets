@@ -4,7 +4,6 @@ const nextConfig = {
         images:{
 domains:[
     "res.cloudinary.com",
-    "https:/khalti.com"
 ]
         }
     
