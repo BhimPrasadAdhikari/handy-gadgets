@@ -1,6 +1,6 @@
 "use client"
 
-import Button from "@/components/ui/Button";
+import Button from "@/components/Button";
 import { Color, Size } from "@/types";
 import { Plus, X } from "lucide-react";
 import { useState } from "react";
