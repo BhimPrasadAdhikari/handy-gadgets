@@ -60,15 +60,14 @@ export const ShipingForm: React.FC = () => {
         const response= await axios.post(`${process.env.NEXT_PUBLIC_API_URL}checkout/`,{
       productIds: items.map((item)=>item.id),
       details:{phone, address}
-    })
-    // {
-    //   headers:{
-
-    //      'Access-Control-Allow-Origin':'https://handy-gadgets.vercel.app',
-        
-    //     "Content-Type":"application/json"
-    //   }
-    // }
+    },
+      {
+      headers:{
+         'Access-Control-Allow-Origin':'https://handy-gadgets.vercel.app',
+        "Content-Type":"application/json"
+      }
+    }
+)
     setOpen(true);
     console.log(response);
     // window.location = response?.data.url;
