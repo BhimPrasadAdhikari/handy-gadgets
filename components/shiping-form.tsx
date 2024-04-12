@@ -71,7 +71,7 @@ export const ShipingForm: React.FC = () => {
     // }
     setOpen(true);
     console.log(response);
-    window.location = response?.data.url;
+    // window.location = response?.data.url;
       toast.success("success");
     } catch (error) {
       toast.error('something went wrong');
