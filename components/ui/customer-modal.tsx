@@ -24,4 +24,4 @@ const ShippingModal = () => {
   );
 }
  
-export default PreviewModal;
+export default ShippingModal;
