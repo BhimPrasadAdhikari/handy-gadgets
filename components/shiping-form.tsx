@@ -57,7 +57,7 @@ export const ShipingForm: React.FC = () => {
   const onSubmit = async ({phone,address}: ShipingFormValues) => {
     try {
       setLoading(true);
-        const response= await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout/`,{
+        const response= await axios.post(`${process.env.NEXT_PUBLIC_API_URL}checkout/`,{
       productIds: items.map((item)=>item.id),
       details:{phone, address}
     })
