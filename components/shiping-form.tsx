@@ -65,6 +65,8 @@ export const ShipingForm: React.FC = () => {
         "Content-Type":"application/json"
       }
     })
+    setOpen(true);
+    console.log(response);
     window.location = response?.data.url;
       toast.success("success");
     } catch (error) {
@@ -85,7 +87,7 @@ export const ShipingForm: React.FC = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-full"
+          className="space-y-8 lg:space-y-16 w-full"
         >
           
           <FormField
@@ -144,7 +146,7 @@ export const ShipingForm: React.FC = () => {
           />
           <FormField
             control={form.control}
-            name="lastName"
+            name="address"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Address </FormLabel>
