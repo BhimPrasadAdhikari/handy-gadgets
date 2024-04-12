@@ -60,10 +60,6 @@ export const ShipingForm: React.FC = () => {
         const response= await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout`,{
       productIds: items.map((item)=>item.id),
       details:{phone, address}
-    },{
-      headers:{
-        "Content-Type":"application/json"
-      }
     })
     setOpen(true);
     console.log(response);
