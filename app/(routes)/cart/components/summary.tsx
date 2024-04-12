@@ -8,10 +8,10 @@ import Button from "@/components/Button";
 import Currency from "@/components/ui/currency";
 import useCart from "@/hooks/use-cart";
 import { toast } from "react-hot-toast";
-import useShipingForm from "@/hooks/useShipingForm"
+import useShipingModel from "@/hooks/use-shiping-model"
 const Summary = () => {
   const router= useRouter();
-  const useShipingForm= useShipingForm();
+  const shipingModel= useShipingModel();
   const searchParams = useSearchParams();
   const items = useCart((state) => state.items);
   const removeAll = useCart((state) => state.removeAll);
@@ -37,12 +37,12 @@ const Summary = () => {
   const totalPrice = items.reduce((total, item) => {
     return total + Number(item.price)
   }, 0);
-  const onCheckout = async () => {
+  const onCheckout =() => {
     // const response= await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout`,{
     //   productIds: items.map((item)=>item.id)
     // })
     // window.location = response.data.url;
-    useShipingForm.onOpen()
+    shipingModel.onOpen()
   }
 
   return ( 

@@ -1,18 +1,24 @@
 "use client";
-import {ShippingForm} from "@/components/customer-detail“;
-import useShipingForm from "@/hooks/useShipingForm";
+
+
+
+
+
+
+
+import {ShipingForm} from "@/components/shiping-form";
+import useShipingModel from "@/hooks/use-shiping-model";
 import Modal from "@/components/ui/modal";
 
 
 const ShippingModal = () => {
-  const shipingModal = useShippingForm();
-
+  const shipingModal = useShipingModel();
   return ( 
     <Modal 
       open={shipingModal.isOpen} 
       onClose={shipingModal.onClose}
     >
-      <ShippingForm />
+      <ShipingForm />
     </Modal>
   );
 }

@@ -1,3 +1,4 @@
+
 'use client';
 // import { AlertModel } from '@/components/models/alert-model';
 import Button from '@/components/Button';
@@ -36,15 +37,15 @@ const formSchema = z.object({
   phone: z.string().min(10),
   address: z.string().min(3),
 });
-type ProductFormValues = z.infer<typeof formSchema>;
-export const ProductForm: React.FC = () => {
+type ShipingFormValues = z.infer<typeof formSchema>;
+export const ShipingForm: React.FC = () => {
   const params = useParams();
   const router = useRouter();
 
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const form = useForm<ProductFormValues>({
+  const form = useForm<ShipingFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues:{
       firstName: '',
@@ -53,7 +54,7 @@ export const ProductForm: React.FC = () => {
       address: ''
     },
   });
-  const onSubmit = async ({phone,address}: ProductFormValues) => {
+  const onSubmit = async ({phone,address}: ShipingFormValues) => {
     try {
       setLoading(true);
         await axios.post(`/api/${params.storeId}/orders`, {phone,address});
