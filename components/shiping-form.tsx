@@ -61,12 +61,6 @@ export const ShipingForm: React.FC = () => {
       productIds: items.map((item)=>item.id),
       details:{phone, address}
     },
-      {
-      headers:{
-         'Access-Control-Allow-Origin':'https://handy-gadgets.vercel.app',
-        "Content-Type":"application/json"
-      }
-    }
 )
     setOpen(true);
     console.log(response);
