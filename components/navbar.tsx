@@ -11,7 +11,7 @@ const Navbar = async () => {
     <Container>
       <div className="relative px-4 sm:px-6 lg:px-8 flex h-16 items-center">
         <Link href="/" className="px-4">
-          <p>STORE</p>
+          <p>KURTA GLOW</p>
         </Link>
         <MainNav data={categories} />
         <NavbarActions />
