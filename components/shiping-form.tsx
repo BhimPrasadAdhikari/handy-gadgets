@@ -55,23 +55,30 @@ export const ShipingForm: React.FC = () => {
     },
   });
   const onSubmit = async ({phone,address}: ShipingFormValues) => {
+
     try {
       setLoading(true);
-        const response= await axios.post(`${process.env.NEXT_PUBLIC_API_URL}checkout/`,{
-      productIds: items.map((item)=>item.id),
-      details:{phone, address}
-    },
+        const response= await axios.post(`${process.env.NEXT_PUBLIC_API_URL}checkout`,
+        {   productIds: items.map((item)=>item.id),
+          details:{phone, address}
+        },
+         { headers:{
+            "Content-Type":"application/x-www-form-urlencoded"
+          }
+        }
+
+     
 )
     setOpen(true);
     console.log(response);
     // window.location = response?.data.url,,,,,;
       toast.success("success");
     } catch (error) {
-      toast.error('something went wrong');
+      toast.error('sorry something went wrong');
     } finally {
       setLoading(false);
     }
-  };
+  }; 
  
   return (
     <>
