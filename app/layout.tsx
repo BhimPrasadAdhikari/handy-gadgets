@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ModalProvider />
         <ToastProvider/>
-        <Navbar/>
+        {/* <Navbar/> */}
         {children}
       <Footer>
       </Footer>
