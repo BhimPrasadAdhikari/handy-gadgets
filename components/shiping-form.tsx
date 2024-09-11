@@ -59,9 +59,9 @@ export const ShipingForm: React.FC = () => {
     try {
       setLoading(true);
         const response= await axios.post(`${process.env.NEXT_PUBLIC_API_URL}checkout`,
-        {   productIds: items.map((item)=>item.id),
+        JSON.stringify({   productIds: items.map((item)=>item.id),
           details:{phone, address}
-        },
+        }),
          { headers:{
             "Content-Type":"application/x-www-form-urlencoded"
           }
