@@ -14,7 +14,7 @@ const ProductsList: React.FC<ProductListProps> = async ({ title,data }) => {
       <h1 className='py-2 text-3xl font-semibold'>{title}</h1>
         {data.length===0 && <NoResult/>}
      <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
-         {data.map((item) => {
+         {data?.map((item) => {
         return <ProductCard key={item.id} data={item} />;
       })}
       </div>

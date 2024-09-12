@@ -9,15 +9,15 @@ import Currency from "@/components/ui/currency";
 import useCart from "@/hooks/use-cart";
 import { toast } from "react-hot-toast";
 import useShipingModel from "@/hooks/use-shiping-model"
+
 const Summary = () => {
-  const router= useRouter();
   const shipingModel= useShipingModel();
   const searchParams = useSearchParams();
   const items = useCart((state) => state.items);
   const removeAll = useCart((state) => state.removeAll);
 
   useEffect(() => {
-    if (searchParams.get('status')==='completed') {
+    if (searchParams.get('status')==='Completed') {
       toast.success('Payment completed.');
       removeAll();
     }
@@ -54,7 +54,7 @@ const Summary = () => {
          <Currency value={totalPrice} />
         </div>
       </div>
-      <Button onClick={onCheckout} disabled={items.length === 0} className="w-full mt-6">
+      <Button onClick={onCheckout} disabled={searchParams.get('status')==='Completed'?true:false} className="w-full mt-6">
         Checkout
       </Button>
     </div>
