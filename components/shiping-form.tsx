@@ -1,6 +1,7 @@
 
 'use client';
 // import { AlertModel } from '@/components/models/alert-model';
+import { redirect } from 'next/navigation'
 import Button from '@/components/Button';
 import {
   Form,
@@ -31,6 +32,13 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import * as z from 'zod'
 
+interface productDetailsProps{
+  identity: string,
+  name:string,
+  total_price: number,
+  quantity:1,
+  unit_price: number,
+}
 import useCart from '@/hooks/use-cart';
 const formSchema = z.object({
   firstName: z.string().min(1),
@@ -54,7 +62,7 @@ export const ShipingForm: React.FC = () => {
       address: ''
     },
   });
-  const onSubmit = async ({phone,address}: ShipingFormValues) => {
+  const onSubmit = async ({phone,address,firstName,lastName}: ShipingFormValues) => {
 
     try {
       setLoading(true);
@@ -70,13 +78,48 @@ export const ShipingForm: React.FC = () => {
      
 )
     setOpen(true);
-    console.log(response);
-    // window.location = response?.data.url,,,,,;
-      toast.success("success");
+    const details=response.data.details
+    console.log(details)
+    const Khalti_response = await axios.post('https://a.khalti.com/api/v2/epayment/initiate/',
+      JSON.stringify({
+          "return_url": "http://localhost:3000/cart",
+          "website_url": "http://localhost:3000",
+          "amount": 1300,
+          "purchase_order_id": "test12",
+          "purchase_order_name": "test",
+          "customer_info": {
+              "name": `${firstName} ${lastName}`,
+              "email": "example@gmail.com",
+              "phone": phone
+          },
+          "amount_breakdown": [
+              {
+                  "label": "Mark Price",
+                  "amount": 1000
+              },
+              {
+                  "label": "VAT",
+                  "amount": 300
+              }
+          ],
+          "product_details": details,
+          "merchant_username": "kurta glow ",
+          "merchant_extra": "merchant_extra"
+        }),
+       { headers:{
+          "Authorization":"Key 1ac80a190b2749f994576e2d2e8f8f86 ",
+          "Content-Type":"application/json"
+        }
+}
+ );
+
+ window.location.href=Khalti_response.data.payment_url
+// toast.success("success");
     } catch (error) {
       toast.error('sorry something went wrong');
     } finally {
       setLoading(false);
+      
     }
   }; 
  
@@ -167,7 +210,7 @@ export const ShipingForm: React.FC = () => {
             )}
           />
           
-          <Button type="submit">Next</Button>
+          <Button type="submit">Khalti payment</Button>
         </form>
       </Form>
       <hr className="mt-2" />
