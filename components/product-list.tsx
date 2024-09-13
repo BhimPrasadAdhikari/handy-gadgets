@@ -1,4 +1,3 @@
-import getProduct from '@/actions/get-products';
 import ProductCard from '@/components/ui/product-card';
 import React from 'react';
 import { Product } from '@/types';

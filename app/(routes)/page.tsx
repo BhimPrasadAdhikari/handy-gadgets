@@ -7,7 +7,7 @@ import getProducts from '@/actions/get-products';
 export const revalidate = 0;
 const HomePage = async () => {
   const products = await getProducts({isFeatured:true});
-  const billboard = await getBillboard('6591805f6cdf43b3c833b5dc');
+  const billboard = await getBillboard();
   return (
     <Container>
       <div className='space-y-10 pb-10'>

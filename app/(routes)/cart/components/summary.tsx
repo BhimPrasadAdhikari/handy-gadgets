@@ -54,9 +54,16 @@ const Summary = () => {
          <Currency value={totalPrice} />
         </div>
       </div>
-      <Button onClick={onCheckout} disabled={searchParams.get('status')==='Completed'?true:false} className="w-full mt-6">
+      {
+        !(items.length===0)? <Button onClick={onCheckout}  className="w-full mt-6">
         Checkout
+      </Button>: <Button onClick={()=> window.location.href='/' }  className="w-full mt-6">
+         Add Product
       </Button>
+      }
+      {/* <Button onClick={onCheckout} disabled={searchParams.get('status')==='Completed'?true:false} className="w-full mt-6">
+        Checkout
+      </Button> */}
     </div>
   );
 }
